@@ -1,0 +1,12 @@
+#%Module1.0#####################################################################
+##
+## intelpython2 modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tAdds Intel Python 2 to your PATH environment variable\n"
+}
+
+module-whatis   "adds Intel Python 2 to your PATH environment variable"
+
+prepend-path    PATH    ~/intelpython2/bin
+conflict        python

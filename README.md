@@ -31,3 +31,17 @@ setenv		PCP_DIR	/opt/rh/devtoolset-7/root
 I would then further edit the produced modulefile, by adding help and 
 versioning, and turn it into something like [gcc/7.3.1](gcc/7.3.1).
       
+## Converting Intel Parallel Studio XE init scripts into Environment Modules
+We can also use the same tools to convert Intel Parallel Studio XE init 
+scripts into modulefiles. For example:
+```
+$ createmodule.sh /opt/intel/vtune_amplifier_2019.1.0.579888/amplxe-vars.sh intel64
+Copyright (C) 2009-2018 Intel Corporation. All rights reserved.
+Intel(R) VTune(TM) Amplifier 2019 (build 579888)
+#%Module 1.0
+prepend-path	PATH	/opt/intel/vtune_amplifier_2019.1.0.579888/bin64
+prepend-path	PKG_CONFIG_PATH	/opt/intel/vtune_amplifier_2019.1.0.579888/include/pkgconfig/lib64:
+setenv		VTUNE_AMPLIFIER_2019_DIR	/opt/intel/vtune_amplifier_2019.1.0.579888
+```
+Again, I would further edit the produced modulefiles to make them more 
+readable; and organize the modulefiles in a more logical way.  

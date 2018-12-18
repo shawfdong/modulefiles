@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+##  rh-python36 modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tSets up environment for SCL rh-python36\n"
+}
+
+module-whatis   "sets up environment for SCL rh-python36"
+
+# for Tcl script use only
+set     root    /opt/rh/rh-python36/root
+
+prepend-path	LD_LIBRARY_PATH	$root/usr/lib64
+prepend-path	MANPATH		$root/usr/share/man
+prepend-path	PATH		$root/usr/bin
+prepend-path	PKG_CONFIG_PATH	$root/usr/lib64/pkgconfig
+prepend-path	XDG_DATA_DIRS	$root/usr/share
+
+conflict        python

@@ -1,0 +1,12 @@
+#%Module1.0#####################################################################
+##
+## anaconda3 modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tAdds Anaconda Python 3 to your PATH environment variable\n"
+}
+
+module-whatis   "adds Anaconda Python 3 to your PATH environment variable"
+
+prepend-path    PATH    $env(HOME)/anaconda3/bin
+conflict        python
