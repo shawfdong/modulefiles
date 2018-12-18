@@ -1,0 +1,26 @@
+#%Module1.0#####################################################################
+##
+## MKL modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/mkl/bin/mklvars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel MKL (Math Kernel Library) v$version\n"
+}
+
+module-whatis   "sets up environment for Intel MKL (Math Kernel Library) v2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     mkl      $root/mkl
+set     tbb      $root/tbb
+
+setenv		MKLROOT		$mkl
+
+prepend-path	CPATH		$mkl/include
+prepend-path	LD_LIBRARY_PATH	$tbb/lib/intel64_lin/gcc4.7:$root/compiler/lib/intel64_lin:$mkl/lib/intel64_lin
+prepend-path	LIBRARY_PATH	$tbb/lib/intel64_lin/gcc4.7:$root/compiler/lib/intel64_lin:$mkl/lib/intel64_lin
+prepend-path	NLSPATH		$mkl/lib/intel64_lin/locale/%l_%t/%N
+prepend-path	PKG_CONFIG_PATH	$mkl/bin/pkgconfig

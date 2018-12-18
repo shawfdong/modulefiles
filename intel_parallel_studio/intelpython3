@@ -1,0 +1,12 @@
+#%Module1.0#####################################################################
+##
+## intelpython3 modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tAdds Intel Python 3 to your PATH environment variable\n"
+}
+
+module-whatis   "adds Intel Python 3 to your PATH environment variable"
+
+prepend-path    PATH    /opt/intel/intelpython3/bin
+conflict        python

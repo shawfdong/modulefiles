@@ -1,0 +1,19 @@
+#%Module1.0#####################################################################
+##
+## Intel Inspector modulefile
+##
+# /opt/intel/inspector_2019.1.0.579146/inspxe-vars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Inspector v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Inspector v2019.1.0.579146"
+
+# for Tcl script use only
+set     version  2019.1.0.579146
+set     root     /opt/intel/inspector_${version}
+
+setenv		INSPECTOR_2019_DIR	$root
+prepend-path	PATH			$root/bin64

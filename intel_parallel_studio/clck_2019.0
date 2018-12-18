@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## Intel Cluster Checker modulefile
+##
+# /opt/intel/clck/2019.0/bin/clckvars.sh intel64 
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Cluster Checker v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Cluster Checke v2019.0"
+
+# for Tcl script use only
+set     version  2019.0
+set     root     /opt/intel/clck/${version}
+
+setenv		CLCK_ROOT		$root
+
+prepend-path	PATH			$root/bin/intel64
+prepend-path	CPLUS_INCLUDE_PATH	$root/include
+prepend-path	LIBRARY_PATH		$root/lib/intel64
+prepend-path	MANPATH			$root/man

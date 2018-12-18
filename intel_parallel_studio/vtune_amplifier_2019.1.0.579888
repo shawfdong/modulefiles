@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## VTune Amplifier modulefile
+##
+# /opt/intel/vtune_amplifier_2019.1.0.579888/amplxe-vars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel VTune Amplifier $version\n"
+}
+
+module-whatis   "sets up environment for Intel VTune Amplifier 2019.1.0.579888"
+
+# for Tcl script use only
+set     version  2019.1.0.579888
+set     root     /opt/intel/vtune_amplifier_${version}
+
+setenv		VTUNE_AMPLIFIER_2019_DIR	$root
+prepend-path	PATH				$root/bin64
+prepend-path	PKG_CONFIG_PATH			$root/include/pkgconfig/lib64

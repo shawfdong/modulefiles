@@ -1,0 +1,27 @@
+#%Module1.0#####################################################################
+##
+## intel_fpga modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel FPGA development software v$version\n"
+}
+
+module-whatis   "sets up environment for Intel FPGA development software v17.1"
+
+# for Tcl script use only
+set     version 17.1
+set     root    /opt/intelFPGA_pro/${version}
+set     board   $root/hld/board/de5a_net_ddr4
+
+setenv QUARTUS_ROOTDIR		$root/quartus
+setenv INTELFPGAOCLSDKROOT	$root/hld
+setenv AOCL_BOARD_PACKAGE_ROOT	$board
+setenv QUARTUS_64BIT		1
+setenv LM_LICENSE_FILE		$root/intelFPGA_pro/licenses/1-NN929P_License.dat
+
+append-path	PATH		$root/quartus/bin:$root/hld/linux64/bin:$root/hld/bin:$root/hld/host/linux64/bin:$root/qsys/bin
+append-path	LD_LIBRARY_PATH	$board/linux64/lib:$root/hld/host/linux64/lib:$board/tests/extlibs/lib
+
+conflict intel_fpga

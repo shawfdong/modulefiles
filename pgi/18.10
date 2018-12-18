@@ -1,0 +1,31 @@
+#%Module1.0#####################################################################
+##
+## PGI modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for PGI Compilers v$version\n"
+}
+
+module-whatis   "sets up environment for PGI Compilers v18.10"
+
+# for Tcl script use only
+set     version 18.10
+set     target  linux86-64
+set     pgihome /opt/pgi
+set     pgidir  $pgihome/$target/$version
+
+setenv		PGI		$pgihome
+setenv		CC		$pgidir/bin/pgcc
+setenv		FC		$pgidir/bin/pgfortran
+setenv		F90		$pgidir/bin/pgf90
+setenv		F77		$pgidir/bin/pgf77
+setenv		CPP		"$pgidir/bin/pgcc -Mcpp"
+setenv		CXX		$pgidir/bin/pgc++
+
+prepend-path	PATH		$pgidir/bin
+prepend-path	MANPATH		$pgidir/man
+prepend-path	LD_LIBRARY_PATH	$pgidir/lib
+
+conflict pgi

@@ -1,0 +1,13 @@
+#%Module1.0#####################################################################
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/pkg_bin/compilervars_arch.sh intel64
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+
+setenv		INTEL_LICENSE_FILE	/opt/intel/licenses
+
+prepend-path	PATH		$root/bin/intel64
+prepend-path	LD_LIBRARY_PATH	$root/compiler/lib/intel64_lin
+prepend-path	MANPATH		/opt/intel/man/common
+prepend-path	NLSPATH		$root/compiler/lib/intel64/locale/%l_%t/%N

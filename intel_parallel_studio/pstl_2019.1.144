@@ -1,0 +1,25 @@
+#%Module1.0#####################################################################
+##
+## pstl modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/pstl/bin/pstlvars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Parallel STL $version\n"
+}
+
+module-whatis   "sets up environment for Intel Parallel STL 2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     pstl     $root/pstl
+set     tbb      $root/tbb
+
+setenv		PSTLROOT	$pstl
+setenv		TBBROOT		$tbb
+
+prepend-path	CPATH		$pstl/include:$tbb/include
+prepend-path	LD_LIBRARY_PATH	$tbb/lib/intel64/gcc4.7
+prepend-path	LIBRARY_PATH	$tbb/lib/intel64/gcc4.7

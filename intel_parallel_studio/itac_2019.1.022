@@ -1,0 +1,28 @@
+#%Module1.0#####################################################################
+##
+## Intel Trace Analyzer and Collector modulefile
+##
+# /opt/intel/itac/2019.1.022/bin/itacvars.sh intel64
+# /opt/intel/itac/2019.1.022/intel64/modulefiles/itac
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Trace Analyzer and Collector v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Trace Analyzer and Collector v2019.1.022"
+
+# for Tcl script use only
+set     version  2019.1.022
+set     root     /opt/intel/itac/${version}
+
+setenv		VT_ADD_LIBS	"-ldwarf -lelf -lvtunwind -lnsl -lm -ldl -lpthread"
+setenv		VT_ARCH		intel64
+setenv		VT_LIB_DIR	$root/intel64/lib
+setenv		VT_MPI		impi4
+setenv		VT_ROOT		$root
+setenv		VT_SLIB_DIR	$root/intel64/slib
+
+prepend-path	PATH		$root/intel64/bin
+prepend-path	LD_LIBRARY_PATH	$root/intel64/slib
+prepend-path	MANPATH		$root/man

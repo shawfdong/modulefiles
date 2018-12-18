@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## julia 1.0.2 modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Julia v$version\n"
+}
+
+module-whatis   "sets up environment for Julia v1.0.2"
+
+# for Tcl script use only
+set     version 1.0.2
+set     root    /usr/local/julia-${version}
+
+append-path     PATH    $root/bin
+append-path     MANPATH $root/share/man
+
+conflict julia

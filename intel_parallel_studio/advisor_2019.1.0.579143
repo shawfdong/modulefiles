@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## Intel Advisor modulefile
+##
+# /opt/intel/advisor_2019.1.0.579143/advixe-vars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Advisor v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Advisor v2019.1.0.579143"
+
+# for Tcl script use only
+set     version  2019.1.0.579143
+set     root     /opt/intel/advisor_${version}
+
+setenv		ADVISOR_2019_DIR	$root
+prepend-path	PATH			$root/bin64
+prepend-path	PYTHONPATH		$root/pythonapi

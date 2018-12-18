@@ -1,0 +1,20 @@
+#%Module1.0#####################################################################
+##
+## go modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tSets up environment for SCL go-toolset-7\n"
+}
+
+module-whatis   "sets up environment for SCL go-toolset-7"
+
+# for Tcl script use only
+set     root    /opt/rh/go-toolset-7/root
+
+prepend-path	GOPATH		$env(HOME)/go:$root/usr/share/gocode
+prepend-path	LD_LIBRARY_PATH	$root/usr/lib64
+prepend-path	MANPATH		$root/usr/share/man:
+prepend-path	PATH		$root/usr/bin:$root/usr/sbin
+prepend-path	PKG_CONFIG_PATH	$root/usr/lib64/pkgconfig
+
+conflict go

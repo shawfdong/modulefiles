@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## TBB modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/tbb/bin/tbbvars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel TBB (Threading Building Blocks) $version\n"
+}
+
+module-whatis   "sets up environment for Intel TBB (Threading Building Blocks) 2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     tbb      $root/tbb
+
+setenv		TBBROOT		$tbb
+
+prepend-path	CPATH		$tbb/include
+prepend-path	LD_LIBRARY_PATH	$tbb/lib/intel64/gcc4.7
+prepend-path	LIBRARY_PATH	$tbb/lib/intel64/gcc4.7

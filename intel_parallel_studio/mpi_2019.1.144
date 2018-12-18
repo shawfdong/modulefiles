@@ -1,0 +1,29 @@
+#%Module1.0#####################################################################
+##
+## Intel MPI modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/mpi/intel64/bin/mpivars.sh intel64
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/mpi/intel64/modulefiles/mpi
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel MPI v$version\n"
+}
+
+module-whatis   "sets up environment for Intel MPI v2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     mpi      $root/mpi
+
+setenv		I_MPI_ROOT		$mpi
+
+prepend-path	PATH			$mpi/intel64/libfabric/bin:$mpi/intel64/bin
+prepend-path	LD_LIBRARY_PATH		$mpi/intel64/libfabric/lib:$mpi/intel64/lib/release:$mpi/intel64/lib
+prepend-path	LIBRARY_PATH		$mpi/intel64/libfabric/lib
+prepend-path	CLASSPATH		$mpi/intel64/lib/mpi.jar
+prepend-path	FI_PROVIDER_PATH	$mpi/intel64/libfabric/lib/prov
+prepend-path	MANPATH			$mpi/man
+
+conflict mpi

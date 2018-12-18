@@ -1,0 +1,27 @@
+#%Module1.0#####################################################################
+##
+## PrgEnv-gcc modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up GCC Programming Environment v$version\n"
+}
+
+module-whatis   "sets up GCC Programming Environment v7.3.1"
+
+# for Tcl script use only
+set     version 7.3.1
+
+if { [ module-info mode load ] || [ module-info mode switch2 ] } {
+    module load gcc/7.3.1
+}
+
+if { [ module-info mode remove ] || [ module-info mode switch1 ] } {
+    module unload gcc/7.3.1
+}
+
+conflict PrgEnv
+conflict PrgEnv-intel
+conflict PrgEnv-pgi
+conflict PrgEnv-gcc

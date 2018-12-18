@@ -1,0 +1,28 @@
+#%Module1.0#####################################################################
+##
+## Intel MPI modulefile
+##
+# /opt/pgi/modulefiles/openmpi/2.1.2/2018
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Open MPI v$version,"
+        puts stderr "\tbuilt with PGI v18.10 with LLVM\n"
+}
+
+module-whatis   "sets up environment for Open MPI v2.1.2 with PGI LLVMv18.10"
+
+# for Tcl script use only
+set version	2.1.2
+set target	linux86-64-llvm
+set libdir	/opt/pgi/$target/2018/mpi/openmpi-$version
+
+if ![ is-loaded pgi/llvm_18.10 ] {
+    module load pgi/llvm_18.10
+}
+
+prepend-path PATH		$libdir/bin
+prepend-path LD_LIBRARY_PATH	$libdir/lib
+prepend-path MANPATH		$libdir/share/man
+
+conflict mpi

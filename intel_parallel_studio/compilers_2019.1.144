@@ -1,0 +1,43 @@
+#%Module1.0#####################################################################
+##
+## Intel Compilers modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/bin/compilervars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Compilers and Libraries v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Compilers and Libraries v2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     doc      /opt/intel/documentation_${version}/en
+set     debugger /opt/intel/debugger_${version}
+set     daal     $root/daal
+set     tbb      $root/tbb
+set     pstl     $root/pstl
+set     mkl      $root/mkl
+set     ipp      $root/ipp
+
+setenv		DAALROOT		$daal
+setenv		TBBROOT			$tbb
+setenv		PSTLROOT		$pstl
+setenv		MKLROOT			$mkl
+setenv		IPPROOT			$ipp
+setenv		INTEL_PYTHONHOME	$debugger/python/intel64
+setenv		INTEL_LICENSE_FILE	/opt/intel/licenses
+
+prepend-path	PATH		$root/bin/intel64:$debugger/gdb/intel64/bin
+prepend-path	LD_LIBRARY_PATH	$root/compiler/lib/intel64_lin:$daal/lib/intel64_lin:$tbb/lib/intel64_lin/gcc4.7:$tbb/lib/intel64_lin/gcc4.4:$mkl/lib/intel64_lin:$ipp/lib/intel64:$debugger/libipt/intel64/lib
+prepend-path	LIBRARY_PATH	$root/compiler/lib/intel64_lin:$daal/lib/intel64_lin:$tbb/lib/intel64_lin/gcc4.7:$tbb/lib/intel64_lin/gcc4.4:$mkl/lib/intel64_lin:$ipp/lib/intel64
+prepend-path	CPATH		$daal/include:$tbb/include:$pstl/include:$mkl/include:$ipp/include
+prepend-path	CLASSPATH	$daal/lib/daal.jar
+prepend-path	INFOPATH	$doc/debugger/gdb-ia/info
+prepend-path	MANPATH		/opt/intel/man/common:$doc/debugger/gdb-ia/man
+prepend-path	NLSPATH		$root/compiler/lib/intel64/locale/%l_%t/%N:$mkl/lib/intel64_lin/locale/%l_%t/%N:$debugger/gdb/intel64/share/locale/%l_%t/%N
+prepend-path	PKG_CONFIG_PATH	$mkl/bin/pkgconfig
+
+conflict intel

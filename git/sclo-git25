@@ -1,0 +1,18 @@
+#%Module1.0#####################################################################
+##
+## git modulefile
+##
+proc ModulesHelp { } {
+        puts stderr "\tSets up environment for SCL sclo-git25\n"
+}
+
+module-whatis   "sets up environment for SCL sclo-git25"
+
+# for Tcl script use only
+set     root    /opt/rh/sclo-git25/root
+
+prepend-path	PATH		$root/usr/bin
+prepend-path	MANPATH		$root/usr/share/man
+setenv		PERL5LIB	$root/usr/share/perl5/vendor_perl
+
+conflict git

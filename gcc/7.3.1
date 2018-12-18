@@ -1,0 +1,26 @@
+#%Module1.0#####################################################################
+##
+## GCC modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for GCC v$version,"
+        puts stderr "\tprovided by SCL devtoolset-7\n"
+}
+
+module-whatis   "sets up environment for GCC v7.3.1"
+
+# for Tcl script use only
+set     version 7.3.1
+set     root    /opt/rh/devtoolset-7/root
+
+prepend-path	INFOPATH	$root/usr/share/info
+prepend-path	LD_LIBRARY_PATH	$root/usr/lib64:$root/usr/lib:$root/usr/lib64/dyninst:$root/usr/lib/dyninst
+prepend-path	MANPATH		$root/usr/share/man
+prepend-path	PATH		$root/usr/bin
+prepend-path	PYTHONPATH	$root/usr/lib64/python2.7/site-packages:$root/usr/lib/python2.7/site-packages
+setenv		PCP_DIR		$root
+setenv		PERL5LIB	$root/usr/lib64/perl5/vendor_perl:$root/usr/lib/perl5:$root/usr/share/perl5/vendor_perl
+
+conflict gcc

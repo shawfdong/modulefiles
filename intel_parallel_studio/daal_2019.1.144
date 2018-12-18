@@ -1,0 +1,25 @@
+#%Module1.0#####################################################################
+##
+## Intel DAAL modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/daal/bin/daalvars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel DAAL (Data Analytics Acceleration Library) v$version\n"
+}
+
+module-whatis   "sets up environment for Intel DAAL (Data Analytics Acceleration Library) v2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     daal     $root/daal
+set     tbb      $root/tbb
+
+setenv		DAALROOT	$daal
+
+prepend-path	CLASSPATH	$daal/lib/daal.jar
+prepend-path	CPATH		$daal/include
+prepend-path	LD_LIBRARY_PATH	$daal/lib/intel64_lin:$tbb/lib/intel64_lin/gcc4.4
+prepend-path	LIBRARY_PATH	$daal/lib/intel64_lin:$tbb/lib/intel64_lin/gcc4.4

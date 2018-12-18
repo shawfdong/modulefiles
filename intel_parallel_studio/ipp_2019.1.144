@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## Intel IPP modulefile
+##
+# /opt/intel/compilers_and_libraries_2019.1.144/linux/ipp/bin/ippvars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel IPP (Integrated Performance Primitives) v$version\n"
+}
+
+module-whatis   "sets up environment for Intel IPP (Integrated Performance Primitives) v2019.1.144"
+
+# for Tcl script use only
+set     version  2019.1.144
+set     root     /opt/intel/compilers_and_libraries_${version}/linux
+set     ipp      $root/ipp
+
+setenv		IPPROOT		$ipp
+
+prepend-path	CPATH		$ipp/include
+prepend-path	LD_LIBRARY_PATH	$ipp/lib/intel64
+prepend-path	LIBRARY_PATH	$ipp/lib/intel64

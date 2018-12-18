@@ -1,0 +1,25 @@
+#%Module1.0#####################################################################
+##
+## Intel Debugger modulefile
+##
+# /opt/intel/debugger_2019/bin/debuggervars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Debugger v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Debugger v2019"
+
+# for Tcl script use only
+set     version  2019
+set     debugger /opt/intel/debugger_${version}
+set     doc      /opt/intel/documentation_${version}/en
+
+setenv		INTEL_PYTHONHOME	$debugger/python/intel64
+
+prepend-path	PATH		$debugger/gdb/intel64/bin
+prepend-path	LD_LIBRARY_PATH	$debugger/libipt/intel64/lib
+prepend-path	INFOPATH	$doc/debugger/gdb-ia/info
+prepend-path	MANPATH		$doc/debugger/gdb-ia/man
+prepend-path	NLSPATH		$debugger/gdb/intel64/share/locale/%l_%t/%N

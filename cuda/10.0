@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## CUDA modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for CUDA v$version\n"
+}
+
+module-whatis   "sets up environment for CUDA v10.0"
+
+# for Tcl script use only
+set     version 10.0
+set     root    /usr/local/cuda-${version}
+
+setenv  CUDA_HOME       $root
+
+append-path     PATH    $root/bin
+append-path     MANPATH $root/doc/man
+# append-path     LD_LIBRARY_PATH $root/lib64
+
+conflict cuda

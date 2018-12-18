@@ -1,0 +1,24 @@
+#%Module1.0#####################################################################
+##
+## LLVM modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for LLVM v$version,"
+        puts stderr "\tprovided by SCL llvm-toolset-7\n"
+}
+
+module-whatis   "sets up environment for LLVM v5.0.1"
+
+# for Tcl script use only
+set     version 5.0.1
+set     root    /opt/rh/llvm-toolset-7/root
+
+prepend-path	LD_LIBRARY_PATH	$root/usr/lib64
+prepend-path	MANPATH		$root/usr/share/man:
+prepend-path	PATH		$root/usr/bin:$root/usr/sbin
+prepend-path	PKG_CONFIG_PATH	$root/usr/lib64/pkgconfig
+prepend-path	PYTHONPATH	$root/usr/lib/python2.7/site-packages
+
+conflict gcc

@@ -1,0 +1,23 @@
+#%Module1.0#####################################################################
+##
+## nodejs modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for node.js v$version,"
+        puts stderr "\tprovided by SCL rh-nodejs10\n"
+}
+
+module-whatis   "sets up environment for node.js v10.10.0"
+
+# for Tcl script use only
+set     version 10.10.0
+set     root    /opt/rh/rh-nodejs10/root
+
+prepend-path	LD_LIBRARY_PATH	$root/usr/lib64
+prepend-path	MANPATH		$root/usr/share/man:
+prepend-path	PATH		$root/usr/bin
+prepend-path	PYTHONPATH	$root/usr/lib/python2.7/site-packages
+
+conflict nodejs

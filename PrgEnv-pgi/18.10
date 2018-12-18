@@ -1,0 +1,34 @@
+#%Module1.0#####################################################################
+##
+## PrgEnv-pgi modulefile
+##
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up PGI Programming Environment v$version\n"
+}
+
+module-whatis   "sets up PGI Programming Environment v18.10"
+
+# for Tcl script use only
+set  version  18.10
+set  modlist  \
+     [ list pgi/18.10 \
+            mpi/openmpi_2.1.2-pgi_18.10 ]
+ 
+if { [ module-info mode load ] || [ module-info mode switch2 ] } {
+    foreach mod $modlist {
+        module load $mod
+    }
+}
+
+if { [ module-info mode remove ] || [ module-info mode switch1 ] } {
+    foreach mod $modlist {
+        module rm $mod
+    }
+}
+
+conflict PrgEnv
+conflict PrgEnv-intel
+conflict PrgEnv-pgi
+conflict PrgEnv-gcc

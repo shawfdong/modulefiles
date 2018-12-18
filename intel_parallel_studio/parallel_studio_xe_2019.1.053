@@ -1,0 +1,41 @@
+#%Module1.0#####################################################################
+##
+## Intel Parallel Studio XE modulefile
+##
+# /opt/intel/parallel_studio_xe_2019.1.053/psxevars.sh intel64
+proc ModulesHelp { } {
+        global version
+
+        puts stderr "\tSets up environment for Intel Parallel Studio XE v$version\n"
+}
+
+module-whatis   "sets up environment for Intel Parallel Studio XE v2019.1.144"
+
+# for Tcl script use only 
+set  version  2019.1.053
+set  modlist  \
+     [ list intel/2019.1.144 \
+            mpi/intel_mpi_2019.1.144 \
+            intel_parallel_studio/clck_2019.0 \
+            intel_parallel_studio/itac_2019.1.022 \
+            intel_parallel_studio/inspector_2019.1.0.579146 \
+            intel_parallel_studio/vtune_amplifier_2019.1.0.579888 \
+            intel_parallel_studio/advisor_2019.1.0.579143 \
+            intel_parallel_studio/intelpython3 ]
+
+if { [ module-info mode load ] || [ module-info mode switch2 ] } {
+    foreach mod $modlist {
+        module load $mod
+    }
+}
+
+if { [ module-info mode remove ] || [ module-info mode switch1 ] } {
+    foreach mod $modlist {
+        module rm $mod
+    }
+}
+
+conflict PrgEnv
+conflict PrgEnv-intel
+conflict PrgEnv-pgi
+conflict PrgEnv-gcc
